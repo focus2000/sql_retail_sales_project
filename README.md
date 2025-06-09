@@ -3,6 +3,7 @@
 
 # Project Overview
 **Project Title**: Retail Sales Analysis
+
 **Database**: sql_project_p1
 
 This project showcases the techniques used by data analysts to explore, clean, and analyze retail sales data. 
@@ -15,15 +16,39 @@ The project involves setting up a retail sales database, performing exploratory 
 **Business Analysis**: Use SQL to answer specific business questions and derive insights from the sales data.
 
 
+# Project Structure
+**1. Database Setup**
+**Database Creation**: The project starts by creating a database named sql_project_p1.
+**Table Creation**: A table named retail_sales is created to store the sales data. The table structure includes columns for transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount
 
--- DATA CLEANING
 
-    SELECT *
-    FROM retail_sales;
+
+
+
+CREATE TABLE retail_sales
+(
+    transactions_id INT PRIMARY KEY,
+    sale_date DATE,	
+    sale_time TIME,
+    customer_id INT,	
+    gender VARCHAR(10),
+    age INT,
+    category VARCHAR(35),
+    quantity INT,
+    price_per_unit FLOAT,	
+    cogs FLOAT,
+    total_sale FLOAT
+);
+
+# Basic Task
+
+  **DATA CLEANING**
+   SELECT * 
+   FROM retail_sales;
 
     
 
--- Updating the Date by changing it from stringe which is text to a proper Date./Date formmating
+ **Updating the Date by changing it from stringe which is text to a proper Date./Date formmating**
 
     SELECT `sale_date`
     FROM retail_sales;
