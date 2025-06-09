@@ -40,10 +40,11 @@ CREATE TABLE retail_sales
     total_sale FLOAT
 );
 
-# Basic Task
+# 1. Basic Tasks
 
   **DATA CLEANING**
    SELECT * 
+   
    FROM retail_sales;
 
     
@@ -55,7 +56,7 @@ CREATE TABLE retail_sales
     UPDATE retail_sales
     SET `sale_date` = STR_TO_DATE(`sale_date`, '%m/%d/%Y');
 
--- IDENTIFYING DUPLICATES
+ **IDENTIFYING DUPLICATES**
 
 
       SELECT 
@@ -65,7 +66,7 @@ CREATE TABLE retail_sales
       HAVING COUNT(*) > 1;
 
 
--- LOOK FOR NULL/BLANK VALUEs AND DELETE
+  **LOOK FOR NULL/BLANK VALUEs AND DELETE**
 
     SELECT *
     FROM retail_sales
@@ -95,10 +96,14 @@ CREATE TABLE retail_sales
     total_sale IS NULL;
     
 
--- DATA EXPORATION
+ # 2. Data Exploration & Cleaning
+**Record Count**: Determine the total number of records in the dataset.
+**Customer Count**: Find out how many unique customers are in the dataset.
+**Category Count**: Identify all unique product categories in the dataset.
+**Null Value Check**: Check for any null values in the dataset and delete records with missing data.
 
 
--- How many sales recorded
+ **How many sales recorded**
 
     SELECT 
     COUNT(*)
@@ -106,7 +111,7 @@ CREATE TABLE retail_sales
     total_sale
     FROM retail_sales;
 
--- How many customers
+ **How many customers**
 
     SELECT 
     COUNT(customer_id)
@@ -114,7 +119,7 @@ CREATE TABLE retail_sales
     total_sale
     FROM retail_sales;
 
--- How many Unique customers
+ **How many Unique customers**
 
     SELECT 
     COUNT(DISTINCT customer_id)
@@ -122,22 +127,22 @@ CREATE TABLE retail_sales
     total_sale
     FROM retail_sales;
 
--- How many categories
+ **How many categories**
 
     SELECT DISTINCT category 
     FROM retail_sales;
 
 
--- SOlving some Basic Business Analyses problem
+ **Solving some Basic Business Analyses problem**
 
 
--- 1 Write a SQL querry to retrieve all columns for sales made on '11/5/2022'
+ **1 Write a SQL querry to retrieve all columns for sales made on '11/5/2022'**
 
     SELECT *
     FROM retail_sales
     WHERE sale_date = '11/5/2022';
 
--- 2 write a SQL querry to retrieve all transactions where the category is clothing and quantity sold is more than 0r equals 3
+ **2 write a SQL querry to retrieve all transactions where the category is clothing and quantity sold is more than 0r equals 3****
 
     SELECT * 
     FROM retail_sales
@@ -145,13 +150,13 @@ CREATE TABLE retail_sales
     AND
     quantiy >= 3;
 
--- 3a write a SQL querry to calculate the total sales.
+ **3a write a SQL querry to calculate the total sales.**
 
     SELECT
     SUM(total_sale) AS net_sale
     FROM retail_sales;
 
--- 3b write  a SQL query to calculate the  total order for each category
+ **3b write  a SQL query to calculate the  total order for each category**
 
     SELECT
     category,
@@ -159,7 +164,7 @@ CREATE TABLE retail_sales
     FROM retail_sales
     GROUP BY 1;
 
--- 3c write  a SQL query to calculate the  total sales and total order for each category
+ **3c write  a SQL query to calculate the  total sales and total order for each category**
 
     SELECT
     category,
@@ -169,7 +174,7 @@ CREATE TABLE retail_sales
     GROUP BY 1;
 
 
--- 4 write a SQL querry to find the average age of customers who purchased items from the beauty category,
+ **4 write a SQL querry to find the average age of customers who purchased items from the beauty category**
 
     SELECT 
     category,
@@ -178,14 +183,14 @@ CREATE TABLE retail_sales
     WHERE category = 'Beauty'
     GROUP BY 1;
 
--- 5 write a SQL querry to find all transactions where the total_sale is greater than 1000
+ **5 write a SQL querry to find all transactions where the total_sale is greater than 1000**
 
     SELECT *
     FROM retail_sales
     WHERE total_sale > 1000;
 
 
--- 6 write SQL querry to find total number of transactions made by each gender in each catgory
+ **6 write SQL querry to find total number of transactions made by each gender in each catgory**
 
     SELECT
     gender, category,
@@ -195,7 +200,7 @@ CREATE TABLE retail_sales
     ORDER BY 1;
 
 
--- 7 write a SQL to calculate the average sale for each month, find out the best selling month in each year
+ **7 write a SQL to calculate the average sale for each month, find out the best selling month in each year.**
 
     SELECT
     YEAR(sale_date) as year, -- pick out each year
@@ -206,7 +211,7 @@ CREATE TABLE retail_sales
     GROUP BY 1,2;
     
 
--- 8 write a SQL to find the top 5 customers based on the highest total sale
+ **8 write a SQL to find the top 5 customers based on the highest total sale.**
 
 
     SELECT 
@@ -217,7 +222,7 @@ CREATE TABLE retail_sales
     ORDER BY  2 DESC
     LIMIT 5; -- TOP 5 customer based on highest total sale
 
--- 9 write a SQL querry to find the number of unique customers who purchased item from unique category
+ **9 write a SQL querry to find the number of unique customers who purchased item from unique category.**
 
 
     SELECT 
@@ -226,9 +231,9 @@ CREATE TABLE retail_sales
     FROM retail_sales
     GROUP BY category;
 
-  -- 10 write a SQL querry to create each shift and number of orders , Example(morning <=12, afternoon between 12 & 17 and eveing > 17) and total order recieved
+   **10 write a SQL querry to create each shift and number of orders , Example(morning <=12, afternoon between 12 & 17 and eveing > 17) and total order recieved.**
   
-  -- Use the case Statement
+   **Use the case Statement.**
   
     WITH hourly_sale
     AS
